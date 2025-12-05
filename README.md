@@ -1,24 +1,53 @@
-# Weather Doodles Detection
+# Trabajo Final - Clasificación de Dibujos (QuickDraw Weather)
 
+Resumen rápido:
 
+- Tema elegido: Doodles meteorológicos (cloud, rainbow, umbrella) del dataset QuickDraw — dibujos reales creados por miles de usuarios, recortados a 500 muestras total (simula el escenario de 500 dibujos hechos en clase).
+- Red A: preentrenada en MNIST, luego fine-tune en QuickDraw (transfer learning).
+- Red B: entrenada desde cero en QuickDraw.
 
-## Contenido
+Archivos añadidos:
 
-- `X.npy` / `y.npy`: 500 bocetos (nube, arcoíris, paraguas) ya balanceados y normalizados.
-- `weather_doodles_training.ipynb`: cuaderno con exploración, entrenamiento y generación del informe.
-- `demo_clasificador.py`: utilidades para cargar el dataset local.
-- `train_models.py`: entrena Red A (transfer learning) y Red B (desde cero).
-- `redA_finetuned.h5` / `redB_fromscratch.h5`: pesos resultantes.
-- `Informe_Trabajo_Final.md`: reporte automatizado.
-- `requirements.txt`: dependencias.
+- `prepare_dataset.py` - descarga categorías QuickDraw (cloud, rainbow, umbrella), extrae 500 muestras (≈167 por clase) y construye `X.npy` / `y.npy`.
+- `train_models.py` - entrena Red A (transfer) y Red B (from scratch), guarda modelos y muestra métricas.
+- `requirements.txt` - paquetes necesarios.
+- `demo_clasificador.py` - adaptado para uso local (funciones de carga/evaluación).
+- `Informe_Trabajo_Final.docx` - informe escrito final (ya no se genera dentro del notebook).
 
-## Uso rápido
+Instrucciones rápidas:
+
+1. Crear y activar entorno (usar Python 3.10, ya instalado en `C:\Users\usuario\AppData\Local\Programs\Python\Python310`):
 
 ```pwsh
 py -3.10 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+```
+
+2. Preparar dataset:
+
+```pwsh
+python prepare_dataset.py
+```
+
+3. Entrenar modelos:
+
+```pwsh
 python train_models.py
 ```
 
-También puedes abrir `weather_doodles_training.ipynb` en VS Code o Jupyter para ejecutar todo el pipeline y regenerar el informe.
+4. Ver resultados en consola y modelos guardados en el directorio de trabajo. El informe formal se encuentra en `Informe_Trabajo_Final.docx` y no se genera automáticamente desde el notebook.
+
+> Nota: TensorFlow 2.15.1 solo brinda ruedas para Python 3.10/3.11. Si creas el entorno con Python 3.14 verás el error “No matching distribution found for tensorflow”.
+
+Detalles del dataset QuickDraw usado:
+
+- Categorías seleccionadas: `cloud`, `rainbow`, `umbrella` (tema “fenómenos meteorológicos / íconos del clima”).
+- Cada archivo trae hasta 75k dibujos 28x28 en formato numpy bitmap; el script toma solo 500 muestras en total (166–167 por clase) para respetar el requisito del curso.
+- El resultado (`X.npy`, `y.npy`) tiene 24k imágenes listas para entrenar las dos redes.
+
+Siguientes pasos recomendados:
+
+- Ajustar número de épocas y batch size para mejor rendimiento.
+- Exportar un cuaderno `.ipynb` con visualizaciones y el informe final.
+- Generar el informe con la estructura: Problemática, Justificación, Desarrollo, Conclusiones.
