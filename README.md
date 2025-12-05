@@ -9,9 +9,8 @@ Resumen rápido:
 Archivos añadidos:
 
 - `prepare_dataset.py` - descarga categorías QuickDraw (cloud, rainbow, umbrella), extrae 500 muestras (≈167 por clase) y construye `X.npy` / `y.npy`.
-- `train_models.py` - entrena Red A (transfer) y Red B (from scratch), guarda modelos y muestra métricas.
+- `weather_doodles_training.ipynb` - pipeline completo (exploración, entrenamiento de Red A/B, métricas y visualizaciones).
 - `requirements.txt` - paquetes necesarios.
-- `demo_clasificador.py` - adaptado para uso local (funciones de carga/evaluación).
 - `Informe_Trabajo_Final.docx` - informe escrito final (ya no se genera dentro del notebook).
 
 Instrucciones rápidas:
@@ -24,19 +23,15 @@ py -3.10 -m venv .venv
 pip install -r requirements.txt
 ```
 
-2. Preparar dataset:
+2. Preparar dataset (solo la primera vez):
 
 ```pwsh
 python prepare_dataset.py
 ```
 
-3. Entrenar modelos:
+3. Abrir `weather_doodles_training.ipynb` (VS Code o Jupyter) y ejecutar las celdas para entrenar/reevaluar las redes. Todas las funciones auxiliares viven dentro del cuaderno.
 
-```pwsh
-python train_models.py
-```
-
-4. Ver resultados en consola y modelos guardados en el directorio de trabajo. El informe formal se encuentra en `Informe_Trabajo_Final.docx` y no se genera automáticamente desde el notebook.
+4. El informe formal se encuentra en `Informe_Trabajo_Final.docx` y no se genera automáticamente desde el notebook.
 
 > Nota: TensorFlow 2.15.1 solo brinda ruedas para Python 3.10/3.11. Si creas el entorno con Python 3.14 verás el error “No matching distribution found for tensorflow”.
 
