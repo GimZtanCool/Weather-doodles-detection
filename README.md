@@ -1,6 +1,6 @@
 # Weather Doodles Detection
 
-Este repositorio contiene únicamente los artefactos necesarios para reproducir el trabajo final sin descargar nuevamente el dataset de QuickDraw.
+
 
 ## Contenido
 
